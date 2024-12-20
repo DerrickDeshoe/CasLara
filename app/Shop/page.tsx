@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Products from "../Components/Product";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import Toilet from "../../public/images/Shop/toilet.png";
