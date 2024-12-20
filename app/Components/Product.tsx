@@ -5,7 +5,7 @@ import Image, { StaticImageData } from "next/image";
 
 interface Product{
   image:StaticImageData;
-  description:String;
+  description:string;
   price:number;
 }
 

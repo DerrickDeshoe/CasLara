@@ -25,12 +25,12 @@ const page = () => {
             </p>
           </div>
           <div className="flex flex-col space-y-3 border-l-4 border-gray pl-2 ml-6">
-            <p  className="text-xs lg:text-lg">
-              "We are best placed to achieve a hassle free, competitive and
+            <p className="text-xs lg:text-lg">
+              &ldquo;We are best placed to achieve a hassle free, competitive and
               efficient service delivery through our product knowledge
-              experience, competitive rates and ensuring continuous growth"
+              experience, competitive rates and ensuring continuous growth&rdquo;
             </p>
-            <p  className="text-xs lg:text-lg">- Management Team 2023</p>
+            <p className="text-xs lg:text-lg">&#34;- Management Team 2023&#34;</p>
           </div>
         </div>
       </div>

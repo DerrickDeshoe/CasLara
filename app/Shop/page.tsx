@@ -1,24 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import Products from "../Components/Product";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
-import { useState } from "react";
 import Toilet from "../../public/images/Shop/toilet.png";
 import Door from "../../public/images/Shop/toilet.png";
 import Geysar from "../../public/images/Shop/toilet.png";
 import Tank from "../../public/images/Shop/toilet.png";
 
-const page = () => {
+const Page = () => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
-
-  const toggleOverlay = () => {
-    setIsOverlayVisible(!isOverlayVisible);
-  };
-
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortType, setSortType] = useState("default");
 
-  const [sortType, setSortType] = useState("default"); // Tracks the sorting type
   // Product data
   const productData = [
     {
@@ -84,39 +79,40 @@ const page = () => {
     "Pumps",
   ];
 
+  const toggleOverlay = () => {
+    setIsOverlayVisible(!isOverlayVisible);
+  };
+
   return (
     <div className="mb-10">
       <div className="bg-shop bg-center bg-no-repeat bg-cover h-[50vh] w-full">
-        <div className="bg-black/50 w-full h-full flex flex-col  gap-3 justify-center items-center px-5">
+        <div className="bg-black/50 w-full h-full flex flex-col gap-3 justify-center items-center px-5">
           <h1 className="font-bold text-3xl text-white text-center">
             BROWSE ALL OUR PRODUCTS
           </h1>
           <p className="text-white text-center">
             Our commitment is to deliver outstanding quality products and to
-            exceed our customers' expectations
+            exceed our customers&apos; expectations
           </p>
         </div>
       </div>
       <div className="px-5">
-        <div className="flex flex-col md:flex-row  py-5 gap-3">
+        <div className="flex flex-col md:flex-row py-5 gap-3">
           <h1 className="font-bold md:w-[50%] md:text-[20px]">
             Products Catalogue
           </h1>
           <div className="flex justify-between md:justify-evenly w-full">
-            {/* Default Sorting Button */}
             <button
               className={`p-1 w-[45%] md:w-[45%] lg:w-[38%] xl:w-[20%] border border-black ${
                 sortType === "default" ? "bg-white text-black" : ""
               }`}
               onClick={() => {
-                setSortType("default"); // Reset sorting
-                setSelectedCategory("All"); // Reset category filtering
+                setSortType("default");
+                setSelectedCategory("All");
               }}
             >
               <p>Default Sorting</p>
             </button>
-
-            {/* Price Sorting Button */}
             <button
               className={`p-1 w-[45%] md:w-[45%] lg:w-[35%] xl:w-[20%] border border-black ${
                 sortType === "price" ? "bg-blue-500 text-white" : ""
@@ -129,7 +125,6 @@ const page = () => {
         </div>
 
         <div className="font-bold flex flex-col md:flex-row items-start gap-2">
-          {/* Heading and Icon */}
           <div className="flex justify-between w-full md:w-auto">
             <h1 className="md:hidden">All</h1>
             <HiAdjustmentsHorizontal
@@ -138,7 +133,6 @@ const page = () => {
             />
           </div>
 
-          {/* Overlay View for Buttons */}
           {isOverlayVisible && (
             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
               <div className="bg-white p-5 rounded-lg shadow-lg w-11/12 max-w-md">
@@ -154,7 +148,7 @@ const page = () => {
                       key={category}
                       onClick={() => {
                         setSelectedCategory(category);
-                        toggleOverlay(); 
+                        toggleOverlay();
                       }}
                     >
                       {category}
@@ -165,7 +159,6 @@ const page = () => {
             </div>
           )}
 
-          {/* Buttons */}
           <div className="hidden md:flex flex-col items-start gap-2 w-[30%]">
             {categories.map((category) => (
               <button
@@ -182,9 +175,8 @@ const page = () => {
             ))}
           </div>
 
-          {/* Products Section */}
           <div className="flex md:justify-evenly flex-wrap w-[100%]">
-            {filteredProducts.map((product) => (
+            {sortedProducts.map((product) => (
               <Products
                 key={product.id}
                 image={product.image}
@@ -199,4 +191,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
