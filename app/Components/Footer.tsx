@@ -3,8 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Facebook from "../../public/images/NavbarImages/Sign-In.png";
-import { FaFacebookF,  FaInstagram, FaXTwitter } from "react-icons/fa6";
 import Call from "../../public/images/FooterImages/call1.svg";
 import Location from "../../public/images/FooterImages/Location.svg";
 import Mail from "../../public/images/FooterImages/mail-01.svg";
@@ -139,9 +137,7 @@ const Footer = () => {
           <Image src={VISA} alt="Visa" className="w-[22%] lg:w-[10%]" />
         </div>
         <div className="flex space-x-1 pb-2">
-        <FaFacebookF/>
-        <FaInstagram/>
-        <FaXTwitter/>
+      
         </div>
       </div>
     </div>

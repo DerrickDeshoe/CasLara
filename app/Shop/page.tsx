@@ -86,7 +86,7 @@ const page = () => {
 
   return (
     <div className="mb-10">
-      <div className="bg-About bg-center bg-no-repeat bg-cover h-[50vh] w-full">
+      <div className="bg-shop bg-center bg-no-repeat bg-cover h-[50vh] w-full">
         <div className="bg-black/50 w-full h-full flex flex-col  gap-3 justify-center items-center px-5">
           <h1 className="font-bold text-3xl text-white text-center">
             BROWSE ALL OUR PRODUCTS
@@ -96,103 +96,102 @@ const page = () => {
             exceed our customers' expectations
           </p>
         </div>
+      </div>
+      <div className="px-5">
+        <div className="flex flex-col md:flex-row  py-5 gap-3">
+          <h1 className="font-bold md:w-[50%] md:text-[20px]">
+            Products Catalogue
+          </h1>
+          <div className="flex justify-between md:justify-evenly w-full">
+            {/* Default Sorting Button */}
+            <button
+              className={`p-1 w-[45%] md:w-[45%] lg:w-[38%] xl:w-[20%] border border-black ${
+                sortType === "default" ? "bg-white text-black" : ""
+              }`}
+              onClick={() => {
+                setSortType("default"); // Reset sorting
+                setSelectedCategory("All"); // Reset category filtering
+              }}
+            >
+              <p>Default Sorting</p>
+            </button>
 
-        <div className="px-5">
-          <div className="flex flex-col md:flex-row  py-5 gap-3">
-            <h1 className="font-bold md:w-[50%] md:text-[20px]">
-              Products Catalogue
-            </h1>
-            <div className="flex justify-between md:justify-evenly w-full">
-              {/* Default Sorting Button */}
-              <button
-                className={`p-1 w-[45%] md:w-[45%] lg:w-[35%] xl:w-[20%] border border-black ${
-                  sortType === "default" ? "bg-white text-black" : ""
-                }`}
-                onClick={() => {
-                  setSortType("default"); // Reset sorting
-                  setSelectedCategory("All"); // Reset category filtering
-                }}
-              >
-                <p>Default Sorting</p>
-              </button>
+            {/* Price Sorting Button */}
+            <button
+              className={`p-1 w-[45%] md:w-[45%] lg:w-[35%] xl:w-[20%] border border-black ${
+                sortType === "price" ? "bg-blue-500 text-white" : ""
+              }`}
+              onClick={() => setSortType("price")}
+            >
+              <p>Price</p>
+            </button>
+          </div>
+        </div>
 
-              {/* Price Sorting Button */}
-              <button
-                className={`p-1 w-[45%] md:w-[45%] lg:w-[35%] xl:w-[20%] border border-black ${
-                  sortType === "price" ? "bg-blue-500 text-white" : ""
-                }`}
-                onClick={() => setSortType("price")}
-              >
-                <p>Price</p>
-              </button>
-            </div>
+        <div className="font-bold flex flex-col md:flex-row items-start gap-2">
+          {/* Heading and Icon */}
+          <div className="flex justify-between w-full md:w-auto">
+            <h1 className="md:hidden">All</h1>
+            <HiAdjustmentsHorizontal
+              className="cursor-pointer sm:block md:hidden"
+              onClick={toggleOverlay}
+            />
           </div>
 
-          <div className="font-bold flex flex-col md:flex-row items-start gap-2">
-            {/* Heading and Icon */}
-            <div className="flex justify-between w-full md:w-auto">
-              <h1 className="md:hidden">All</h1>
-              <HiAdjustmentsHorizontal
-                className="cursor-pointer sm:block md:hidden"
-                onClick={toggleOverlay}
-              />
-            </div>
-
-            {/* Overlay View for Buttons */}
-            {isOverlayVisible && (
-              <div className="fixed inset-0 bg-black/50 z-50 flex items-center  justify-center">
-                <div className="bg-white p-5 rounded-lg shadow-lg w-11/12 max-w-md">
-                  <button
-                    className="text-right text-gray-500 font-bold mb-4"
-                    onClick={toggleOverlay}
-                  >
-                    Close ✕
-                  </button>
-                  <div className="flex flex-col items-start gap-2">
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        onClick={() => {
-                          setSelectedCategory(category);
-                          toggleOverlay(); // Close the overlay
-                        }}
-                      >
-                        {category}
-                      </button>
-                    ))}
-                  </div>
+          {/* Overlay View for Buttons */}
+          {isOverlayVisible && (
+            <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+              <div className="bg-white p-5 rounded-lg shadow-lg w-11/12 max-w-md">
+                <button
+                  className="text-right text-gray-500 font-bold mb-4"
+                  onClick={toggleOverlay}
+                >
+                  Close ✕
+                </button>
+                <div className="flex flex-col items-start gap-2 lg:w-[60%]">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => {
+                        setSelectedCategory(category);
+                        toggleOverlay(); 
+                      }}
+                    >
+                      {category}
+                    </button>
+                  ))}
                 </div>
               </div>
-            )}
-
-            {/* Buttons */}
-            <div className="hidden md:flex flex-col items-start gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-2 py-1 ${
-                    selectedCategory === category
-                      ? "text-blue-500 underline"
-                      : "text-black"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
             </div>
+          )}
 
-            {/* Products Section */}
-            <div className="flex md:justify-evenly flex-wrap w-[100%]">
-              {filteredProducts.map((product) => (
-                <Products
-                  key={product.id}
-                  image={product.image}
-                  description={product.description}
-                  price={product.price}
-                />
-              ))}
-            </div>
+          {/* Buttons */}
+          <div className="hidden md:flex flex-col items-start gap-2 w-[30%]">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-2 py-1 ${
+                  selectedCategory === category
+                    ? "text-blue-500 underline"
+                    : "text-black"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Products Section */}
+          <div className="flex md:justify-evenly flex-wrap w-[100%]">
+            {filteredProducts.map((product) => (
+              <Products
+                key={product.id}
+                image={product.image}
+                description={product.description}
+                price={product.price}
+              />
+            ))}
           </div>
         </div>
       </div>
