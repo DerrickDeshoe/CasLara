@@ -15,6 +15,7 @@ const NavBar = () => {
     { label: "Shop", href: "/Shop" },
     { label: "About", href: "/About" },
     { label: "Contact", href: "/Contact" },
+    { label: "Browse", href: "/Browse" },
   ];
 
   const toggleMenu = () => {

@@ -14,7 +14,7 @@ export default {
       backgroundImage: {
         about: "url('../public/images/AboutPage/AboutPageBaackground.png')",
         contact: "url('../public/images/ContactPage/ContactPageHome.png')",
-        shop: "url('../public/images/Shop/ShopBackImage.png')",
+        // shop: "url('../public/images/Shop/ShopBackImage.png')",
     
       },
 
