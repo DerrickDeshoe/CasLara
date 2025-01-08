@@ -7,8 +7,9 @@ import Toilet from "../../public/images/Shop/toilet.png";
 import Door from "../../public/images/Shop/toilet.png";
 import Geysar from "../../public/images/Shop/toilet.png";
 import Tank from "../../public/images/Shop/toilet.png";
+import { motion } from "framer-motion";
 
-const Page = () => {
+const Page = (props: any) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortType, setSortType] = useState("default");
@@ -150,41 +151,68 @@ const Page = () => {
 
       {/* Popup Card */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-          <div className="bg-white p-5 rounded-lg shadow-lg w-11/12 max-w-md">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center overflow-scroll justify-center">
+          <div className="bg-white p-5  rounded-lg shadow-lg w-[95%] lg:w-[80%] xl:w-[70%] ">
             <button
-              className="text-right text-gray-500 font-bold mb-4"
+              className="text-right text-gray-500 font-bold mb-1"
               onClick={closePopup}
             >
               Close ✕
             </button>
-            <div className="flex flex-col items-center gap-4">
-              <img
-                src={selectedProduct.image}
-                alt={selectedProduct.description}
-                className="w-32 h-32"
-              />
-              <h2 className="font-bold text-lg">{selectedProduct.description}</h2>
-              <p className="text-gray-700">Price: ${selectedProduct.price}</p>
-              <div className="flex gap-2">
-                <label>Size:</label>
-                <select className="border p-1">
-                  <option>Small</option>
-                  <option>Medium</option>
-                  <option>Large</option>
-                </select>
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="md:w-1/2 h-60 md:h-96 lg:h-[360px] border p-1 w-full rounded-2xl">
+                <img
+                  src={props.image}
+                  alt={selectedProduct.description}
+                  className="w-full "
+                />
               </div>
-              <div className="flex gap-2">
-                <label>Color:</label>
-                <select className="border p-1">
-                  {selectedProduct.colors.map((color) => (
-                    <option key={color}>{color}</option>
-                  ))}
-                </select>
+              <div className="md:w-1/2 w-full flex flex-col gap-2">
+                <h2 className="font-bold text-2xl">
+                  {selectedProduct.description}
+                </h2>
+                <p className="text-gray-700 text-2xl font-bold">
+                  ${selectedProduct.price}
+                </p>
+
+                <div className="flex flex-col gap-2 border p-2 pb-3 rounded-2xl">
+                  <label>Select color</label>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="w-6 h-6 flex justify-center items-center rounded-full bg-black">
+                     
+                    </div>
+                    <div className="w-6 h-6 flex justify-center items-center rounded-full bg-lightyellow">
+                    
+                    </div>
+                    <div className="w-6 h-6 flex justify-center items-center rounded-full bg-green">
+                    
+                    </div>
+                   
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 border p-2 pb-3 my-3 rounded-2xl">
+                  <label>Choose size</label>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="px-3 h-8 flex justify-center items-center rounded-2xl bg-gray">
+                      <p>Small</p>
+                    </div>
+                    <div className="px-3 h-8 flex justify-center items-center rounded-2xl bg-gray">
+                      <p>Medium</p>
+                    </div>
+                    <div className="px-3 h-8 flex justify-center items-center rounded-2xl bg-gray">
+                      <p>Large</p>
+                    </div>
+                    <div className="px-3 h-8 flex justify-center items-center rounded-2xl bg-gray">
+                      <p>X-Large</p>
+                    </div>
+                  </div>
+                </div>
+               
+                <motion.button   whileTap={{scale:0.8}} className="bg-blue-500 text-white w-full lg:w-[50%] py-2 rounded-2xl">
+                  Add to Cart
+                </motion.button>
               </div>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                Add to Cart
-              </button>
             </div>
           </div>
         </div>

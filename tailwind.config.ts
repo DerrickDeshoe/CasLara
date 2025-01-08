@@ -24,7 +24,9 @@ export default {
         darkGray: '#C2BEBE',
         purpleBlue: '#131118',
         yellow: '#CB9B00',
+        lightyellow:"#FAA61A",
         overlay: "#141E30",
+        green:"#045E07"
       },
     },
   },
